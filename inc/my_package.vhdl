@@ -39,4 +39,17 @@ package my_package is
             );
     end component;
 
+    component mux_control_2 is
+        generic( N : integer := 4);
+        port(
+            C0  : in std_logic_vector(N-1 downto 0);
+            C1  : in std_logic_vector(N-1 downto 0);
+            C2  : in std_logic_vector(N-1 downto 0);
+            C3  : in std_logic_vector(N-1 downto 0);
+            S   : in std_logic_vector(1 downto 0);
+            Q   : out std_logic_vector(N-1 downto 0);
+            RST : in std_logic
+            );
+    end component;
+
 end package my_package;

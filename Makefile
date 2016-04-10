@@ -18,11 +18,12 @@ PACKAGE = $(INCDIR)my_package.vhdl
 ALL:  test #contador_bcd_4_digitos_tb
 
 
-test: $(EXE)clock_tb $(EXE)generator_enable_tb $(EXE)contador_bcd_tb $(EXE)contador_tb
+test: $(EXE)clock_tb $(EXE)generator_enable_tb $(EXE)contador_bcd_tb $(EXE)contador_tb $(EXE)mux_control_2_tb
 	$(EXE)clock_tb --stop-time=100ns --vcd=$(VCD)tb_clock.vcd $(NULL) \
 		&& $(EXE)generator_enable_tb --stop-time=100ns --vcd=$(VCD)tb_generator_enable.vcd $(NULL) \
 		&& $(EXE)contador_bcd_tb	--stop-time=100ns --vcd=$(VCD)tb_contador_bcd.vcd $(NULL) \
-		&& $(EXE)contador_tb		--stop-time=100ns --vcd=$(VCD)tb_contador.vcd $(NULL)
+		&& $(EXE)contador_tb		--stop-time=100ns --vcd=$(VCD)tb_contador.vcd $(NULL) \
+		&& $(EXE)mux_control_2_tb	--stop-time=100ns --vcd=$(VCD)tb_mux_control_2.vcd $(NULL)
 
 $(EXE)clock_tb: $(CLOCK) $(PACKAGE)
 	$(CC) $(INC) $(WORK) $(WORKDIR) $(CLOCK) $(PACKAGE) $(NULL) \
@@ -39,6 +40,10 @@ $(EXE)contador_bcd_tb: $(SRC)clock.vhdl $(SRC)contador_bcd.vhdl $(TEST)contador_
 $(EXE)contador_tb: $(SRC)clock.vhdl $(SRC)contador.vhdl $(TEST)contador_tb.vhdl
 	$(CC) $(INC) $(WORK) $(WORKDIR) $(SRC)clock.vhdl $(SRC)contador.vhdl $(TEST)contador_tb.vhdl \
 		&& $(CC) $(MAKE) $(WORKDIR) $(WORK) -o $(EXE)contador_tb contador_tb $(NULL)
+
+$(EXE)mux_control_2_tb: $(SRC)clock.vhdl $(SRC)contador.vhdl $(SRC)mux_control_2.vhdl $(TEST)mux_control_2_tb.vhdl
+	$(CC) $(INC) $(WORK) $(WORKDIR) $(SRC)clock.vhdl $(SRC)contador.vhdl $(SRC)mux_control_2.vhdl $(TEST)mux_control_2_tb.vhdl \
+		&& $(CC) $(MAKE) $(WORKDIR) $(WORK) -o $(EXE)mux_control_2_tb mux_control_2_tb $(NULL)
 
 clean:
 	ghdl --remove --work=tp1 --workdir=obj \
