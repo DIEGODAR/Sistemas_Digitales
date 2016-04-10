@@ -10,10 +10,13 @@ end entity clock_tb;
 
 architecture tb_arq of clock_tb is
     signal Q_int : std_logic;
+    signal RST_int : std_logic := '0';
 begin
 
     clk : clock
         generic map (tau => 1 ns)
-        port map ( Q => Q_int);
+        port map ( Q => Q_int, RST => RST_int);
+
+        RST_int <= not RST_int after 5 ns;
 
 end architecture tb_arq;

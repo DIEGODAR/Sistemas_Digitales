@@ -11,19 +11,19 @@ end entity generator_enable_tb;
 
 architecture tb of generator_enable_tb is
     signal clk_int : std_logic;
-    signal ena_int : std_logic;
+    signal q_int : std_logic;
     signal rst_int : std_logic;
 begin
     clk_comp : clock
-        generic map ( tau =>  10 ps)
-        port map ( Q => clk_int);
+        generic map ( tau =>  1 ns)
+        port map ( Q => clk_int, RST => '0');
 
     clk_rst : clock
-        generic map ( tau => 2 ns )
-        port map( Q => rst_int);
+        generic map ( tau => 20 ns )
+        port map( Q => rst_int, RST => '0');
 
     enable_comp : generator_enable
-        generic map ( N => 10)
-        port map ( clk => clk_int, ena => ena_int, rst => rst_int);
+        generic map ( N => 8)
+        port map ( clk => clk_int, q => q_int, rst => rst_int);
 end architecture tb;
 
