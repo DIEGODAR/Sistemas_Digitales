@@ -29,5 +29,14 @@ package my_package is
             );
     end component contador_bcd;
         
+    component contador is
+        generic( N : integer := 1);
+        port(
+            D   : in std_logic;
+            CLK : in std_logic;
+            Q   : out std_logic_vector(N-1 downto 0);
+            RST : in std_logic
+            );
+    end component;
 
 end package my_package;
