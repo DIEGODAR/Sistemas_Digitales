@@ -2,45 +2,47 @@ library ieee;
 use     ieee.std_logic_1164.all;
 library tp1;
 use     tp1.my_package.all;
+--use work.my_package.all;
 
 
 entity contador_bcd_4_digitos is
     port(
             CLK : in std_logic;
             RST : in std_logic;
-            Q   : out std_logic_vector(7 downto 0)
+            Q   : out std_logic_vector(7 downto 0);
+            QAN : out std_logic_vector(7 downto 0)
         );
 end entity;
 
 architecture arq of contador_bcd_4_digitos is
 
     --constantes 
-    constant cuenta_contador : integer := 5;
-    constant cuenta_display  : integer := 1;
+    constant cuenta_contador : integer := 5;                --hasta donde cuenta el enable de los contadores
+    constant cuenta_display  : integer := 1;                --hasta donde cuenta el enable de los display's
 
     --Propias del contador de 4 digitos
-    signal clk_i    : std_logic;
-    signal rst_i    : std_logic;
-    signal Q7segmentos      : std_logic_vector(7 downto 0);
+    signal clk_i    : std_logic;                        -- señal de clk
+    signal rst_i    : std_logic;                        -- señal de rst
+    signal Qdeco    : std_logic_vector(7 downto 0);     -- salida del decodificador bcd a 7 segmentos
 
     --Señales auxiliares
-    signal Qena1    : std_logic;
-    signal Qena2    : std_logic;
-    signal Qcont0   : std_logic_vector(3 downto 0);
-    signal Qcont1   : std_logic_vector(3 downto 0);
-    signal Qcont2   : std_logic_vector(3 downto 0);
-    signal Qcont3   : std_logic_vector(3 downto 0);
-    signal Cont_ena : std_logic_vector(3 downto 0);
-    signal Cont2bit : std_logic_vector(1 downto 0);
-    signal Qmux     : std_logic_vector(3 downto 0);
-    signal Qdeco    : std_logic_vector(7 downto 0);
-    signal anodo    : std_logic_vector(3 downto 0);
+    signal Qena1    : std_logic;                        -- enable de los contadores
+    signal Qena2    : std_logic;                        -- enable de los display's
+    signal Qcont0   : std_logic_vector(3 downto 0);     -- salida del contador bcd nro 0
+    signal Qcont1   : std_logic_vector(3 downto 0);     -- salida del contador bcd nro 1
+    signal Qcont2   : std_logic_vector(3 downto 0);     -- salida del contador bcd nro 2
+    signal Qcont3   : std_logic_vector(3 downto 0);     -- salida del contador bcd nro 3
+    signal Cont_ena : std_logic_vector(3 downto 0);     -- salida de enable de los contadores bcd
+    signal Cont2bit : std_logic_vector(1 downto 0);     -- salida del contador de 2 bit
+    signal Qmux     : std_logic_vector(3 downto 0);     -- salida del multiplexor
+    signal anodo    : std_logic_vector(3 downto 0);     -- salida del controlador de anodos para display's
 
 begin
     -- vinculando puertos con señales
-    clk_i <= CLK;-- <= clk_i;
-    rst_i <= RST; -- <= rst_i;
-    Q   <= Q7segmentos;
+    clk_i <= CLK;
+    rst_i <= RST;
+    Q     <= Qdeco;
+    QAN   <= anodo;
 
     -- generador de enable
     ena1    :   generator_enable

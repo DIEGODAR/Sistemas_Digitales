@@ -71,7 +71,8 @@ package my_package is
         port(
             CLK : in std_logic;
             RST : in std_logic;
-            Q   : out std_logic_vector(7 downto 0)
+            Q   : out std_logic_vector(7 downto 0);
+            QAN : out std_logic_vector(7 downto 0)
             );
     end component contador_bcd_4_digitos;
 
