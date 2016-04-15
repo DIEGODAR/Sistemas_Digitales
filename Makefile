@@ -26,7 +26,7 @@ test: $(EXE)clock_tb $(EXE)generator_enable_tb $(EXE)contador_bcd_tb $(EXE)conta
 		&& $(EXE)mux_control_2_tb	--stop-time=100ns --vcd=$(VCD)tb_mux_control_2.vcd $(NULL) \
 		&& $(EXE)bcd_a_7_segmentos_tb --stop-time=100ns --vcd=$(VCD)tb_bcd_a_7_segmentos.vcd $(NULL) \
 		&& $(EXE)controlador_anodo_tb --stop-time=100ns --vcd=$(VCD)tb_controlador_anodo.vcd $(NULL) \
-		&& $(EXE)contador_bcd_4_digitos_tb --stop-time=100ns --vcd=$(VCD)tb_contador_bcd_4_digitos.vcd #$(NULL)
+		&& $(EXE)contador_bcd_4_digitos_tb --stop-time=100ns --vcd=$(VCD)tb_contador_bcd_4_digitos.vcd $(NULL)
 
 $(EXE)clock_tb: $(CLOCK) $(PACKAGE)
 	$(CC) $(INC) $(WORK) $(WORKDIR) $(CLOCK) $(PACKAGE) $(NULL) \

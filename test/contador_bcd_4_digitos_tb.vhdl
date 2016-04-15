@@ -1,7 +1,8 @@
 library ieee;
 use     ieee.std_logic_1164.all;
-library tp1;
-use     tp1.my_package.all;
+--library tp1;
+--use     tp1.my_package.all;
+use     work.my_package.all;
 
 entity contador_bcd_4_digitos_tb is
 begin
