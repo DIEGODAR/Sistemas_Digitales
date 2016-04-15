@@ -15,14 +15,14 @@ end entity contador_bcd;
 
 architecture cont_arq of contador_bcd is
 
-signal  count : integer range 0 to 10;
+    signal count : integer range 0 to 10;
 begin
     process(clk,rst)
     begin
         if rst = '1' then
             count <= 0;
             ena <= '0';
-            
+
         elsif rising_edge(clk) then
             ena <= '0';
             if D = '1' then
@@ -36,6 +36,6 @@ begin
             end if;
         end if;
     end process;
-
-        Q <= std_logic_vector( to_signed(count,4) );
+    
+    Q <= std_logic_vector( to_signed(count,4) );
 end architecture;
