@@ -6,3 +6,4 @@
 *.cf
 doc/vcd/*.vcd
 exe/*
+doc/informe/*.pdf
