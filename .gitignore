@@ -1,4 +1,7 @@
-
+*.bak
+*.aux
+*.log
+*.gz
 *.o
 *.cf
 doc/vcd/*.vcd

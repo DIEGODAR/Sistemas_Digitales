@@ -15,7 +15,7 @@ end entity contador;
 architecture cont_arq of contador is
     signal count : integer range 0 to 3 := 0;
 begin
-    process(clk,rst,d)
+    process(clk,rst)
     begin
         if rst = '1' then
             count <= 0;

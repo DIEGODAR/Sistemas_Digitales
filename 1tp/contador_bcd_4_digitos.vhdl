@@ -33,7 +33,7 @@ architecture arq of contador_bcd_4_digitos is
     signal Qcont1   : std_logic_vector(3 downto 0);         -- salida del contador bcd nro 1
     signal Qcont2   : std_logic_vector(3 downto 0);         -- salida del contador bcd nro 2
     signal Qcont3   : std_logic_vector(3 downto 0);         -- salida del contador bcd nro 3
-    signal Cont_ena : std_logic_vector(3 downto 0);         -- salida de enable de los contadores bcd
+    signal Cont_ena : std_logic_vector(2 downto 0);         -- salida de enable de los contadores bcd
     signal Cont2bit : std_logic_vector(1 downto 0);         -- salida del contador de 2 bit
     signal Qmux     : std_logic_vector(3 downto 0);         -- salida del multiplexor
 
@@ -127,6 +127,6 @@ begin
              CLK    => clk_i,
              Q      => Qcont3,
              RST    => rst_i,
-             ENA    => Cont_ena(3)
+             ENA    => Open
              );
 end architecture arq;

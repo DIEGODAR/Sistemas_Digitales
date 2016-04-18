@@ -15,7 +15,7 @@ end entity contador_bcd;
 
 architecture cont_arq of contador_bcd is
 
-    signal count : integer range 0 to 10;
+    signal count : integer range 0 to 9;
 begin
     process(clk,rst)
     begin

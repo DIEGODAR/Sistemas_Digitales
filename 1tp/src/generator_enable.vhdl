@@ -12,21 +12,20 @@ end entity generator_enable;
 
 
 architecture enable_arq of generator_enable is
+        signal count : integer := 0;
 begin
-
     process(clk,rst)
-        variable count : integer := 0;
     begin
         if rst = '1' then
             q <= '0';
-            count := 0;
+            count <= 0;
 
         elsif rising_edge(clk) then
-            count := count +1;
+            count <= count +1;
 
             if count = N then
                 q <= '1';
-                count := 0;
+                count <= 0;
             else
                 q <= '0';
             end if;

@@ -11,7 +11,7 @@ end entity clock;
 
 
 architecture clock_arq of clock is
-    signal Q_int : std_logic := '0';
+    signal Q_int : std_logic := '1';
     signal RST_int : std_logic;
 
 begin
