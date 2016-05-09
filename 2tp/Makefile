@@ -1,39 +1,27 @@
-CC 		= ghdl
-INC 	= -i
-MAKE 	= -m
-TEST 	= ./test/
-SRC		= ./src/
-DOC		= ./doc/
-VCD     = $(DOC)vcd/
-WORKDIR	= --workdir=obj
-WORK	= --work=tp2
-EXE		= ./exe/
-INCDIR	= ./inc/
-NULL	=# 1>/dev/null 2>/dev/null
-
-INCLUDE = $(CC) $(INC) $(WORK) $(WORKDIR)
-MAKERUN	= $(CC) $(MAKE) $(WORKDIR) $(WORK) -o
-
-# Auxiliares
-PACKAGE	= $(INCDIR)my_package.vhdl
-
-# Reglas
-test: $(VCD)tb_clock.vcd
+CC= make
+GHDL=ghdl
+GHDLFLAGS= --work=tp2 --workdir=obj
+INC=inc/my_package.vhdl
+SRC=src/clock.vhdl src/FlipFlop.vhdl
+TEST=test/clock_tb.vhdl test/FlipFlop_tb.vhdl
+VCD=vcd/
 
 
+ALL: clean include m 
+	$(CC) -f file/clock \
+		&& $(CC) -f file/FlipFlop
 
+run: clock_tb
+	./clock_tb --stop-time=100ns --vcd=$(VCD)tb_clock.vcd \
+		&& ./flipflop_tb --stop-time=100ns --vcd=$(VCD)tb_flipflop.vcd
 
+include:
+	$(GHDL) -i $(GHDLFLAGS) $(INC) $(SRC) $(TEST)
 
-# Zonas de tests
-$(EXE)clock_tb:	$(SRC)clock.vhdl $(TEST)clock_tb.vhdl
-	$(INCLUDE) $(SRC)clock.vhdl $(TEST)clock_tb.vhdl $(PACKAGE) $(NULL) \
-		&& $(MAKERUN) $(EXE)clock_tb clock_tb $(NULL)
-
-
-# Zona de archivos VCD
-$(VCD)tb_clock.vcd: $(EXE)clock_tb
-	$(EXE)clock_tb --stop-time=100ns --vcd=$(VCD)tb_clock.vcd $(NULL)
-
+m:
+	$(GHDL) --gen-makefile $(GHDLFLAGS) -o exe/clock_tb clock_tb > file/clock \
+		&& $(GHDL) --gen-makefile $(GHDLFLAGS) -o exe/FlipFlop_tb FlipFlop_tb > file/FlipFlop
 
 clean:
-	rm -rfv exe/*_tb exe/*.o obj/* doc/vcd/*.vcd ?
+	$(GHDL) --remove $(GHDLFLAGS) \
+		&& rm -rfv e~* $(VCD)*.vcd file/clo* file/Flip*
