@@ -5,5 +5,6 @@
 *.o
 *.cf
 doc/vcd/*.vcd
-exe/*
+exe/*_tb
+2tp/exe/*_tb
 doc/informe/*.pdf
