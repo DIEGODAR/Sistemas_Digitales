@@ -20,5 +20,15 @@ package my_package is
             notQ: out std_logic
         );
     end component FlipFlop;
+    
+    component contadorBinario is
+        generic (maxNum : integer := 33000 ; numSalida : integer := 16 );
+        port(
+            D   : in std_logic;
+            CLk : in std_logic;
+            RST : in std_logic;
+            Q   : out std_logic_vector(numSalida-1 downto 0)
+         );
+    end component contadorBinario;
 
 end package my_package;
