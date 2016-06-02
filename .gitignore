@@ -10,7 +10,5 @@ exe/*_tb
 doc/informe/*.pdf
 *_tb
 e~*
-2tp/file/FlipFlop
-2tp/file/clock
-2tp/vcd/tb_clock.vcd
-2tp/vcd/tb_flipflop.vcd
+2tp/file/m_*
+2tp/vcd/tb*.vcd

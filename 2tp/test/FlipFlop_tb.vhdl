@@ -14,10 +14,10 @@ architecture tb of FlipFlop_tb is
     signal D_int    : std_logic := '0';
 begin
     RST_int <= '0';
-    D_int <= not D_int after 10 ns;
+    D_int <= not D_int after 7 ns;
 
     clk : clock
-    generic map (tau => 1 ns)
+    generic map (tau => 10 ns)
     port map (
                  Q => Q_clk, 
                  RST => RST_int
