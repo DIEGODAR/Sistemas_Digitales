@@ -4,7 +4,18 @@ use     ieee.numeric_std.all;
 
 package my_package is
 
-- CLOCK
+-- CharROM
+    component CharROM is
+        generic(W: integer := 8, nFC: integer := 3);
+        port(
+            char_address:   in std_logic_vector(3 downto 0);
+            font_row    :   in std_logic_vector(nFC-1 downto 0);
+            font_col    :   in std_logic_vector(nFC-1 downto 0);
+            rom_out     :   out std_logic
+        );
+    end component CharROM;
+
+-- CLOCK
     component clock is
         generic( tau : time := 1 ns);
         port(
