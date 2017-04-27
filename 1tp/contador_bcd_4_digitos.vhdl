@@ -57,7 +57,7 @@ begin
     port map(
             CLK => clk_i,
             Q  => Qena2,
-            RST => rst_i
+            RST => '0'
             );
 
     --decodificador de 2 a 4 para anodo
@@ -93,7 +93,7 @@ begin
              D  =>  Qena2,
              CLK => clk_i,
              Q  =>  Cont2bit,
-             RST => rst_i
+             RST => '0'
              );
 
     --cuatro contadores bcd
