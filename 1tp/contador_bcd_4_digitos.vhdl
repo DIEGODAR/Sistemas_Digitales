@@ -17,25 +17,25 @@ end entity;
 architecture arq of contador_bcd_4_digitos is
 
     --constantes 
-    constant cuenta_contador : integer := 50000000;                -- hasta donde cuenta en enable de los contadores
-    constant cuenta_display  : integer := 50000;                -- hasta donde cuenta el enable de los display's
+    constant cuenta_contador : integer := 50000000;  -- hasta donde cuenta en enable de los contadores
+    constant cuenta_display  : integer := 50000;     -- hasta donde cuenta el enable de los display's
 
     --Propias del contador de 4 digitos
-    signal clk_i    : std_logic;                            -- señal de clk
-    signal rst_i    : std_logic;                            -- señal de rst
-    signal Qdeco    : std_logic_vector(7 downto 0);         -- salida del decodificador bcd a 7 segmentos
-    signal anodo    : std_logic_vector(3 downto 0);         -- salida del controlador de anodos para display's
+    signal clk_i    : std_logic;                     -- señal de clk
+    signal rst_i    : std_logic;                     -- señal de rst
+    signal Qdeco    : std_logic_vector(7 downto 0);  -- salida del decodificador bcd a 7 segmentos
+    signal anodo    : std_logic_vector(3 downto 0);  -- salida del controlador de anodos para display's
 
     --Señales auxiliares
-    signal Qena1    : std_logic;                            -- enable de los contadores 
-    signal Qena2    : std_logic;                            -- enable de los display's
-    signal Qcont0   : std_logic_vector(3 downto 0);         -- salida del contador bcd nro 0
-    signal Qcont1   : std_logic_vector(3 downto 0);         -- salida del contador bcd nro 1
-    signal Qcont2   : std_logic_vector(3 downto 0);         -- salida del contador bcd nro 2
-    signal Qcont3   : std_logic_vector(3 downto 0);         -- salida del contador bcd nro 3
-    signal Cont_ena : std_logic_vector(2 downto 0);         -- salida de enable de los contadores bcd
-    signal Cont2bit : std_logic_vector(1 downto 0);         -- salida del contador de 2 bit
-    signal Qmux     : std_logic_vector(3 downto 0);         -- salida del multiplexor
+    signal Qena1    : std_logic;                     -- enable de los contadores 
+    signal Qena2    : std_logic;                     -- enable de los display's
+    signal Qcont0   : std_logic_vector(3 downto 0);  -- salida del contador bcd nro 0
+    signal Qcont1   : std_logic_vector(3 downto 0);  -- salida del contador bcd nro 1
+    signal Qcont2   : std_logic_vector(3 downto 0);  -- salida del contador bcd nro 2
+    signal Qcont3   : std_logic_vector(3 downto 0);  -- salida del contador bcd nro 3
+    signal Cont_ena : std_logic_vector(2 downto 0);  -- salida de enable de los contadores bcd
+    signal Cont2bit : std_logic_vector(1 downto 0);  -- salida del contador de 2 bit
+    signal Qmux     : std_logic_vector(3 downto 0);  -- salida del multiplexor
 
 begin
     -- vinculando puertos con señales
@@ -57,7 +57,7 @@ begin
     port map(
             CLK => clk_i,
             Q  => Qena2,
-            RST => rst_i
+            RST => '0'
             );
 
     --decodificador de 2 a 4 para anodo
@@ -93,7 +93,7 @@ begin
              D  =>  Qena2,
              CLK => clk_i,
              Q  =>  Cont2bit,
-             RST => rst_i
+             RST => '0'
              );
 
     --cuatro contadores bcd
