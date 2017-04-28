@@ -1,6 +1,7 @@
 \documentclass[10pt,a4paper]{article}
 \pagestyle{empty}
 \usepackage[utf8]{inputenc}
+\usepackage[spanish]{babel}
 \usepackage{amsmath}
 \usepackage{amsfonts}
 \usepackage{amssymb}
@@ -44,21 +45,22 @@ segmentos se prendía en qué tiempo.
 Este componente fue útil a la hora de decidir cual de las salidas de los 
 contadores BCD era vista en el display.
 \item Controladores: \\
-El controlador, en el sentido de que display se prendía en que tiempo, el 
-controlador es básicamente un generador de enable más un contador de 2 bits 
-más un decodificador. El controlador decide que contador muestra sus valores 
+El controlador, en el sentido de que display se prendía en que tiempo, 
+es básicamente un generador de enable más un contador de 2 bits más un 
+decodificador. El controlador decide que contador muestra sus valores 
 en que display 7 segmentos.
 \end{enumerate}
 
 La figura ~\ref{grafico1} es el esquemático del contador BCD de 4 dígitos que 
 generó el \textbf{ISE}, en él se puede ver que se usaron dos generadores de 
 enable, uno conectado a los contadores BCD y otro conectado al contador de 2 
-bits que controla los display 7 segmentos. Además se usaron cuatro contadores 
+bits que controla los display 7 segmentos. Además se usaron cuatro contadores
 BCD uno para cada dígito. Los contadores están conectados a un multiplexor que 
 tiene como variable de control al contador de 2 bits. Por último se tienen dos 
 decodificadores, el primero es el decodificador BCD a 7 segmentos y el segundo 
 es es decodificador que controla los displays 7 segmentos alimentando o no sus 
 anodos.
+
 \begin{figure}[h!]
 \begin{center}
 \includegraphics[scale=0.4]{./graficos/diagrama_contador_bcd_4.png}
@@ -69,6 +71,7 @@ anodos.
 
 \section*{Gráficos}
 A continuación se muestran los gráficos de varias simulaciones.
+
 \begin{figure}[h!]
 \begin{center}
 \includegraphics[scale=0.5]{./graficos/generador_enable.png}
@@ -94,6 +97,7 @@ A continuación se muestran los gráficos de varias simulaciones.
 \caption{Simulación de controlador de ánodos}
 \label{grafico_controlador_anodo}
 \end{figure}
+
 
 \begin{figure}[h!]
 \begin{center}
